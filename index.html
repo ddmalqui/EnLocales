@@ -21,27 +21,9 @@
 <body>
     <div class="container">
         <br>
-        <nav class="navbar navbar-default">
-            <div class="container-fluid">
-                <div class="navbar-header">
-                    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#nav" aria-expanded="false">
-                        <span class="sr-only">Toggle navigation</span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                    </button>
-                    <a class="navbar-brand" href="index.html">Firebase</a>
-                </div>
-                <div class="collapse navbar-collapse" id="nav">
-                    <ul class="nav navbar-nav">
-                        <li><a href="login.html">Member</a></li>
-                        <li><a href="create.html">New Entry</a></li>
-                    </ul>
-                </div>
-            </div>
-        </nav>
+       
 
-        <h1>Firebase - List</h1>
+        <h1>Registros</h1>
 
         <div id="entries" class="row">
 
@@ -53,14 +35,15 @@
     <script src="https://www.gstatic.com/firebasejs/3.3.0/firebase.js"></script>
     <script>
         // firebase config
-        var config = {
-            apiKey: "AIzaSyBqxEP00IKEgI163DnTRluzxIHwesx_QLQ",
-            authDomain: "example-crud-blog-d4912.firebaseapp.com",
-            databaseURL: "https://example-crud-blog-d4912.firebaseio.com",
-            storageBucket: "",
-        };
+       var config = {
+                    apiKey: "AIzaSyARAFMvH10iF_w_fn3tMYWxDrhFw_vKWcQ",
+                    authDomain: "infousuarios-d3305.firebaseapp.com",
+                    databaseURL: "https://infousuarios-d3305.firebaseio.com",
+                    projectId: "infousuarios-d3305",
+                    storageBucket: "",
+                    messagingSenderId: "195980824134"
+                  };
         firebase.initializeApp(config);
-
         /////////////////////////////////////
 
         var Blog = firebase.database().ref('Entry').orderByChild('updatedAt');
@@ -71,15 +54,14 @@
             var html = '';
             r.forEach(function (item) {
                 entry = item.val()
-                html = '<div class="col-md-4">' +
+                html = '<div>' +
                     '<a href="entry.html?id=' + item.getKey() + '" style="text-decoration:none!important;">' +
                     '<div class="panel panel-info">' +
                     '<div class="panel-heading">' +
-                    '<h3 class="panel-title">' + excerpt(entry.title, 140) + '</h3>' +
+                    '<h3 class="panel-title"><strong>' + excerpt(entry.title, 140) + '</strong></h3>' +
                     '</div>' +
-                    '<div class="panel-body">' +
-                    '<small>By ' + entry.author + ' | ' + datetimeFormat(entry.updatedAt) + ' | ' + entry.views + ' views</small>' +
-                    '<hr><p>' + excerpt(entry.content, 250) + '</p>' +
+                    '<div class="panel-body">' + datetimeFormat(entry.updatedAt)  +
+                    "<hr><a href='"+excerpt(entry.content, 250)+"'>'" + excerpt(entry.content, 250) + '</a>' +
                     '</div>' +
                     '</div>' +
                     '</a>' +
